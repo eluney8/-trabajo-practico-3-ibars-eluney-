@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  background-color: rgb(247, 215, 4);
+  border-style: inset;
+  border-color: rgb(255, 225, 0);
+  border-width: 20px;
+}
