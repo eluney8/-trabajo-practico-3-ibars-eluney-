@@ -52,3 +52,29 @@ const renderizarCards = (lista) => {
   });
 };
 obtenerPersonajes();
+
+const formBuscar = document.querySelector("#formBuscar");
+const inputBuscar = document.querySelector("#inputBuscar");
+
+formBuscar.addEventListener("submit", (e) => {
+  e.preventDefault();
+  mensajeError.textContent = "";
+
+  const termino = inputBuscar.value.toLowerCase().trim();
+
+  if (termino === "") {
+    alert("Por favor, ingresa un nombre para buscar.");
+    return;
+  }
+
+  const filtrados = personajesSimpson.filter((p) =>
+    p.name.toLowerCase().includes(termino),
+  );
+
+  if (filtrados.length === 0) {
+    limpiarContenedor();
+    mensajeError.textContent = `No se hallaron resultados para "${termino}".`;
+  } else {
+    renderizarCards(filtrados);
+  }
+});
