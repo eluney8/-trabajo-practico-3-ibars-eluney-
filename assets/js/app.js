@@ -88,3 +88,32 @@ const obtenerDetalleIndividual = async (id) => {
         console.error("Error al cargar el detalle:", error);
     }
 };
+
+const mostrarModal = (p) => {
+    const urlImg = `https://cdn.thesimpsonsapi.com/500${p.portrait_path}`;
+    const frasePrincipal = p.phrases.length > 0 ? p.phrases : "¡D'oh!";
+    modalContent.innerHTML = `
+        <div class="modal-header bg-warning border-bottom-0">
+            <h5 class="modal-title fw-bold text-primary">${p.name}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-4">
+            <img src="${urlImg}" class="img-fluid rounded shadow mb-4" alt="${p.name}" style="max-height: 350px;">
+            <div class="text-start">
+                <p><strong>Edad:</strong> ${p.age || 'Desconocida'} años</p>
+                <p><strong>Nacimiento:</strong> ${p.birthdate || 'No registrado'}</p>
+                <p><strong>Ocupación:</strong> ${p.occupation}</p>
+                <p><strong>Estado:</strong> ${p.status === 'Alive' ? 'Vivo' : 'Fallecido'}</p>
+                <hr>
+                <p class="fst-italic text-muted">
+                    <i class="fa-solid fa-quote-left me-2"></i>${frasePrincipal}
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer border-top-0">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+    `;
+
+    modalSimpson.show();
+};
