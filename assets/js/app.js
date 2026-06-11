@@ -42,8 +42,6 @@ const renderizarCards = (lista) => {
                         <h5 class="card-title text-primary fw-bold">${name}</h5>
                         <p class="card-text mb-1 small"><strong>Ocupación:</strong> ${occupation}</p>
                         <p class="card-text text-muted small"><strong>Estado:</strong> ${status}</p>
-                        
-                        <
                         <button class="btn btn-warning mt-auto fw-bold btn-ver-detalle" data-id="${id}">
                             Ver detalle
                         </button>
@@ -53,3 +51,4 @@ const renderizarCards = (lista) => {
         `;
   });
 };
+obtenerPersonajes();

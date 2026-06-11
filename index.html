@@ -21,6 +21,24 @@
         Galeria de los Simpsons
       </h1>
     </header>
+    <main class="container">
+      <section class="row mb-5 justify-content-center">
+        <div class="col-md-6">
+          <form id="formBuscar" class="d-flex gap-2">
+            <input
+              type="text"
+              id="inputBuscar"
+              class="form-control border-warning"
+              placeholder="Buscar personaje por nombre"
+            />
+            <button type="submit" class="btn btn-warning px-4">Buscar</button>
+          </form>
+          <div id="mensajeError" class="mt-2 text-danger fw-bold"></div>
+        </div>
+      </section>
+
+      <div class="row g-4 mt-2" id="cardContainer"></div>
+    </main>
     <footer class="mt-5 p-3">
       <h3 class="p-2 text-white fs-5 text-center fw-bold">
         &copy; 2026 Todos los derechos reservados
