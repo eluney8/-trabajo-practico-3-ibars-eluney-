@@ -74,3 +74,17 @@ formBuscar.addEventListener("submit", (e) => {
     renderizarCards(filtrados);
   }
 });
+
+const modalSimpson = new bootstrap.Modal(document.getElementById('modalDetalle'));
+const modalContent = document.querySelector("#modalContent");
+
+const obtenerDetalleIndividual = async (id) => {
+    try {
+        const resp = await fetch(`https://thesimpsonsapi.com/api/characters/${id}`);
+        if (!resp.ok) throw new Error("No se pudo obtener el detalle");
+        const personaje = await resp.json();
+        mostrarModal(personaje);
+    } catch (error) {
+        console.error("Error al cargar el detalle:", error);
+    }
+};
