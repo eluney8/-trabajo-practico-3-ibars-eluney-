@@ -75,24 +75,26 @@ formBuscar.addEventListener("submit", (e) => {
   }
 });
 
-const modalSimpson = new bootstrap.Modal(document.getElementById('modalDetalle'));
+const modalSimpson = new bootstrap.Modal(
+  document.getElementById("modalDetalle"),
+);
 const modalContent = document.querySelector("#modalContent");
 
 const obtenerDetalleIndividual = async (id) => {
-    try {
-        const resp = await fetch(`https://thesimpsonsapi.com/api/characters/${id}`);
-        if (!resp.ok) throw new Error("No se pudo obtener el detalle");
-        const personaje = await resp.json();
-        mostrarModal(personaje);
-    } catch (error) {
-        console.error("Error al cargar el detalle:", error);
-    }
+  try {
+    const resp = await fetch(`https://thesimpsonsapi.com/api/characters/${id}`);
+    if (!resp.ok) throw new Error("No se pudo obtener el detalle");
+    const personaje = await resp.json();
+    mostrarModal(personaje);
+  } catch (error) {
+    console.error("Error al cargar el detalle:", error);
+  }
 };
 
 const mostrarModal = (p) => {
-    const urlImg = `https://cdn.thesimpsonsapi.com/500${p.portrait_path}`;
-    const frasePrincipal = p.phrases.length > 0 ? p.phrases : "¡D'oh!";
-    modalContent.innerHTML = `
+  const urlImg = `https://cdn.thesimpsonsapi.com/500${p.portrait_path}`;
+  const frasePrincipal = p.phrases.length > 0 ? p.phrases : "¡D'oh!";
+  modalContent.innerHTML = `
         <div class="modal-header bg-warning border-bottom-0">
             <h5 class="modal-title fw-bold text-primary">${p.name}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -100,10 +102,10 @@ const mostrarModal = (p) => {
         <div class="modal-body text-center p-4">
             <img src="${urlImg}" class="img-fluid rounded shadow mb-4" alt="${p.name}" style="max-height: 350px;">
             <div class="text-start">
-                <p><strong>Edad:</strong> ${p.age || 'Desconocida'} años</p>
-                <p><strong>Nacimiento:</strong> ${p.birthdate || 'No registrado'}</p>
+                <p><strong>Edad:</strong> ${p.age || "Desconocida"} años</p>
+                <p><strong>Nacimiento:</strong> ${p.birthdate || "No registrado"}</p>
                 <p><strong>Ocupación:</strong> ${p.occupation}</p>
-                <p><strong>Estado:</strong> ${p.status === 'Alive' ? 'Vivo' : 'Fallecido'}</p>
+                <p><strong>Estado:</strong> ${p.status === "Alive" ? "Vivo" : "Fallecido"}</p>
                 <hr>
                 <p class="fst-italic text-muted">
                     <i class="fa-solid fa-quote-left me-2"></i>${frasePrincipal}
@@ -115,5 +117,12 @@ const mostrarModal = (p) => {
         </div>
     `;
 
-    modalSimpson.show();
+  modalSimpson.show();
 };
+
+cardContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-ver-detalle")) {
+    const idPersonaje = e.target.dataset.id;
+    obtenerDetalleIndividual(idPersonaje);
+  }
+});
